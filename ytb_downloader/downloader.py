@@ -1,8 +1,9 @@
 """This module contains functions for downloading videos from youtube."""
 import logging
 import youtube_dl  # type: ignore
-from typing import Union
+from typing import List, Dict
 from .config import settings
+from .file_name_collector import FilenameCollectorPP
 
 logger = logging.getLogger(settings.PROJECT_SLUG)
 YDL_OPTS = {
@@ -11,25 +12,27 @@ YDL_OPTS = {
 }
 
 
-def download_clip(url: str) -> Union[str, None]:
-    """Download video from the given youtube URL.
+def download_videos(urls: List[str], ydl_opts: Dict = YDL_OPTS) -> List[str]:
+    """Download videos from the given youtube URLs.
 
     Args:
-        url (str): url to the video in youtube, you can get it through copying
-          the url in address bar.
+        urls (List[str]): urls to the videos in youtube, you can get it through
+          copying the url in address bar.
+        ydl_opts (dict): youtube download options.
 
     Returns:
-        str: Downloaded youtube video file.
+        List[str]: Downloaded youtube video file.
     """
-    output_file = None
+    output_files = []
     try:
-        with youtube_dl.YoutubeDL(YDL_OPTS) as ydl:
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            filename_collector = FilenameCollectorPP()
             ydl.cache.remove()
-            info_dict = ydl.extract_info(url, download=False)
-            output_file = ydl.prepare_filename(info_dict) + '.' + info_dict['ext']
-            ydl.download([url])
+            ydl.add_post_processor(filename_collector)
+            ydl.download(urls)
+            output_files = filename_collector.filenames
     except Exception as e:
         error_msg = "The error [{}] occurred during downloading " \
-                    "the video from URL [{}]".format(str(e), url)
+                    "the videos.".format(str(e))
         logger.error(error_msg)
-    return output_file
+    return output_files
