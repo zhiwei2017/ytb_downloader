@@ -18,7 +18,9 @@ To install `ytb_downloader` by running::
 How to Use
 ++++++++++
 
-Start downloading videos by calling::
+Download Audio
+~~~~~~~~~~~~~~
+Start downloading audio by calling::
 
     $ ytb_downloader "<your youtube video url>"
 
@@ -31,6 +33,12 @@ For more details, please execute::
 
     $ ytb_downloader --help
 
+
+Download Video
+~~~~~~~~~~~~~~
+Start downloading video by calling::
+
+    $ ytb_downloader --video-only "<your youtube video url>"
 
 Maintainers
 -----------
