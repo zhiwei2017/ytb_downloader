@@ -1,0 +1,8 @@
+-r base.txt
+bandit
+flake8
+mypy
+pytest
+pytest-cov
+pytest-runner
+tox
