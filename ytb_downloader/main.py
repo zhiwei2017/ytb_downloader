@@ -24,6 +24,6 @@ def main(format, time_start, time_end, bitrate, url):
     tmp_output_file = download_clip(url)
     output_file = convert_to(tmp_output_file)
     os.remove(tmp_output_file)
-    msg = "The video from [] is downloaded and converted to [] format " \
-          "in file [].".format(url, format, output_file)
+    msg = "The video from [{}] is downloaded and converted to [{}] format " \
+          "in file [{}].".format(url, format, output_file)
     logger.info(msg)

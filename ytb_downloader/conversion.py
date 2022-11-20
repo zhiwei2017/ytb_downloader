@@ -2,7 +2,7 @@
 file to the given format."""
 import os
 import logging
-import moviepy.editor as mp
+import moviepy.editor as mp  # type: ignore
 from typing import Optional, Union
 from .config import settings
 

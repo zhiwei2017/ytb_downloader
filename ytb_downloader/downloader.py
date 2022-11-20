@@ -1,6 +1,6 @@
 """This module contains functions for downloading videos from youtube."""
 import logging
-import youtube_dl
+import youtube_dl  # type: ignore
 from typing import Union
 from .config import settings
 
