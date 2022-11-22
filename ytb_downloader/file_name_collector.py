@@ -1,12 +1,30 @@
 """Extracting downloaded files' names."""
 import youtube_dl  # type: ignore
+from typing import Tuple, Dict, List
 
 
-class FilenameCollectorPP(youtube_dl.postprocessor.common.PostProcessor):
+class FileNameCollectorPP(youtube_dl.postprocessor.common.PostProcessor):
+    """Collect file names from the youtube_dl for downloaded videos as an post
+    processing step.
+
+    Attributes:
+        file_names (:obj:list of str): file names of the downloaded videos in
+          sequence.
+    """
     def __init__(self):
-        super(FilenameCollectorPP, self).__init__(None)
-        self.filenames = []
+        super(FileNameCollectorPP, self).__init__(None)
+        self.file_names = []
 
-    def run(self, information):
-        self.filenames.append(information["filepath"])
+    def run(self, information: Dict) -> Tuple[List, Dict]:
+        """Interface function for adding the last downloaded video's file name
+        in the class attribute `filenames`.
+
+        Args:
+            information (:obj: of dict): last downloaded video's information.
+
+        Returns:
+            :obj: of tuple of :obj: of list and :obj: of dict: last downloaded
+            video's information.
+        """
+        self.file_names.append(information["filepath"])
         return [], information
