@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Youtube Downloader &mdash; Youtube Downloader 0.1.1 documentation</title>
+  <title>Youtube Downloader &mdash; Youtube Downloader 0.2.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> Youtube Downloader
           </a>
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -50,6 +50,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use">How to Use</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#download-audio">Download Audio</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#download-video">Download Video</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download-in-bulk">Download in bulk</a></li>
 </ul>
 </li>
 </ul>
@@ -105,9 +106,11 @@
 </section>
 <section id="how-to-use">
 <h3>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this heading"></a></h3>
+<p>You can use the command line tool from <cite>ytb_downloader</cite> to download audios or videos
+from Youtube.</p>
 <section id="download-audio">
 <h4>Download Audio<a class="headerlink" href="#download-audio" title="Permalink to this heading"></a></h4>
-<p>Start downloading audio by calling:</p>
+<p>Start downloading a single audio by calling:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ytb_downloader &quot;&lt;your youtube video url&gt;&quot;
 </pre></div>
 </div>
@@ -123,8 +126,85 @@
 </section>
 <section id="download-video">
 <h4>Download Video<a class="headerlink" href="#download-video" title="Permalink to this heading"></a></h4>
-<p>Start downloading video by calling:</p>
+<p>Start downloading a single video by calling:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ytb_downloader --video-only &quot;&lt;your youtube video url&gt;&quot;
+</pre></div>
+</div>
+</section>
+<section id="download-in-bulk">
+<h4>Download in bulk<a class="headerlink" href="#download-in-bulk" title="Permalink to this heading"></a></h4>
+<p>If you want to download audios in bulk, please prepare a <em>csv</em> file containing all
+the urls of the audios. Here is an example about how does this csv file look like.</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">example-url-only.csv</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>url</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.youtube.com/watch?v=WqkjYKUXERQ">https://www.youtube.com/watch?v=WqkjYKUXERQ</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.youtube.com/watch?v=nOubjLM9Cbc">https://www.youtube.com/watch?v=nOubjLM9Cbc</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Here is the content of the example-url-only.csv file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>url
+https://www.youtube.com/watch?v=WqkjYKUXERQ
+https://www.youtube.com/watch?v=nOubjLM9Cbc
+</pre></div>
+</div>
+<p>In the csv file, you can also specify the <em>format</em>, <em>time_start</em>, <em>time_end</em> and <em>bitrate</em>
+for each audio, such as</p>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text">example.csv</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>url</p></th>
+<th class="head"><p>format</p></th>
+<th class="head"><p>time_start</p></th>
+<th class="head"><p>time_end</p></th>
+<th class="head"><p>bitrate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.youtube.com/watch?v=WqkjYKUXERQ">https://www.youtube.com/watch?v=WqkjYKUXERQ</a></p></td>
+<td><p>mp3</p></td>
+<td><p>0</p></td>
+<td></td>
+<td><p>3000k</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.youtube.com/watch?v=nOubjLM9Cbc">https://www.youtube.com/watch?v=nOubjLM9Cbc</a></p></td>
+<td><p>mp3</p></td>
+<td><p>3</p></td>
+<td><p>100</p></td>
+<td><p>500k</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here is the content of the example.csv file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>url,format,time_start,time_end,bitrate
+https://www.youtube.com/watch?v=WqkjYKUXERQ,mp3,0,,3000k
+https://www.youtube.com/watch?v=nOubjLM9Cbc,mp3,3,100,500k
+</pre></div>
+</div>
+<p>To download all the audios from the urls listed in this file by calling:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ytb_downloader_bulk example.csv
+</pre></div>
+</div>
+<p>If you want to download the videos only, you need to provide a csv file with
+one column <em>url</em>, and list all the urls you want to download in that column. Then
+execute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ytb_downloader_bulk --video-only example.csv
 </pre></div>
 </div>
 </section>
