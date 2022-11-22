@@ -18,11 +18,13 @@ def columns_validation(columns: Sequence[str]) -> Union[List[str], None]:
     columns, such as "format", "time_start", "time_end", "bitrate".
 
     Args:
-        columns (:obj: list of str): column names of dataframe read from csv file.
+        columns (:obj:`list` of :obj:`str`): column names of dataframe read
+          from csv file.
 
     Returns:
-        :obj: of list of str|None: return None if "url" is not included in the
-        columns; otherwise return the list of existed optional columns.
+        :obj:`None` or :obj:`list` of :obj:`str`: return None if "url" is not
+        included in the columns; otherwise return the list of existed optional
+        columns.
     """
     converting_func_params = set(COL_TYPE_DICT.keys())
     converting_func_params.remove(DOWNLOADING_FUNC_PARAM)
@@ -36,13 +38,13 @@ def load_info_file(file_path: str) -> Tuple[List[str], List[Dict]]:
     video function.
 
     Args:
-        file_path (str): path to the csv file containing information for
-        downloading video  function and converting video function.
+        file_path (:obj:`str`): path to the csv file containing information for
+          downloading video function and converting video function.
 
     Returns:
-        :obj: of tuple of :obj: list of str and :obj: list of dict: urls for
-        downloading videos as a list and converting function params as a list
-        of dictionaries.
+        :obj:`tuple` (:obj:`list` of :obj:`str` and :obj:`list` of :obj:`dict`):
+        urls for downloading videos as a list and converting function params as
+        a list of dictionaries.
     """
     df = pd.read_csv(file_path, sep=",", dtype=COL_TYPE_DICT)
     converting_func_params = columns_validation(df.columns)

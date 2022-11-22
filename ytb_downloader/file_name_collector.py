@@ -8,8 +8,8 @@ class FileNameCollectorPP(youtube_dl.postprocessor.common.PostProcessor):
     processing step.
 
     Attributes:
-        file_names (:obj:list of str): file names of the downloaded videos in
-          sequence.
+        file_names (:obj:`list` of :obj:`str`): file names of the downloaded videos in sequence.
+
     """
     def __init__(self):
         super(FileNameCollectorPP, self).__init__(None)
@@ -20,10 +20,10 @@ class FileNameCollectorPP(youtube_dl.postprocessor.common.PostProcessor):
         in the class attribute `filenames`.
 
         Args:
-            information (:obj: of dict): last downloaded video's information.
+            information (:obj:`dict`): last downloaded video's information.
 
         Returns:
-            :obj: of tuple of :obj: of list and :obj: of dict: last downloaded
+            :obj:`tuple` (:obj:`list` and :obj:`dict`): last downloaded
             video's information.
         """
         self.file_names.append(information["filepath"])

@@ -30,13 +30,13 @@ def download_audio(video_only: bool, format: str, time_start: int,
     audio with given format and other converting params.
 
     Args:
-        video_only (bool): flag, to indicate whether to convert the video or
+        video_only (:obj:`bool`): flag, to indicate whether to convert the video or
           not.
-        format (str): audio format for the conversion.
-        time_start (int): starting time for cutting the video.
-        time_end (int|None): end time for cutting the video.
-        bitrate (str): bitrate of the audio.
-        url (str): url of the video to download and convert.
+        format (:obj:`str`): audio format for the conversion.
+        time_start (:obj:`int`): starting time for cutting the video.
+        time_end (:obj:`int`, optional): end time for cutting the video.
+        bitrate (:obj:`str`): bitrate of the audio.
+        url (:obj:`str`): url of the video to download and convert.
     """
     tmp_output_file = download_videos([url])[0]
     if not video_only:
@@ -57,9 +57,9 @@ def download_audios(video_only: bool, file: str):
     """Download videos in bulk and convert them to audios.
 
     Args:
-        video_only (bool): flag, to indicate whether to convert the video or
+        video_only (:obj:`bool`): flag, to indicate whether to convert the video or
           not.
-        file (str): path to the csv file containing all the information for
+        file (:obj:`str`): path to the csv file containing all the information for
         downloading and converting.
     """
     urls, info_dicts = load_info_file(file)
