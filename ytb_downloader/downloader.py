@@ -17,12 +17,12 @@ def download_videos(urls: List[str],
     """Download videos from the given youtube URLs.
 
     Args:
-        urls (:obj: of list of str): urls to the videos in youtube, you can get it
-          through copying the url in address bar.
-        ydl_opts (dict|None): youtube download options.
+        urls (:obj:`list` of :obj:`str`): urls to the videos in
+          youtube, you can get it through copying the url in address bar.
+        ydl_opts (:obj:`dict`, optional): youtube download options.
 
     Returns:
-        :obj: of list of str: Downloaded youtube video file names.
+        :obj:`list` of :obj:`str`: Downloaded youtube video file names.
     """
     ydl_opts = ydl_opts or YDL_OPTS
     output_files = []
