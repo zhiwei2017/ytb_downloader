@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Youtube Downloader &mdash; Youtube Downloader 0.2.0 documentation</title>
+  <title>Youtube Downloader &mdash; Youtube Downloader 0.3.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> Youtube Downloader
           </a>
               <div class="version">
-                0.2.0
+                0.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -162,17 +162,19 @@ for each audio, such as</p>
 <table class="colwidths-given docutils align-default" id="id2">
 <caption><span class="caption-text">example.csv</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
+<col style="width: 29%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>url</p></th>
 <th class="head"><p>format</p></th>
 <th class="head"><p>time_start</p></th>
 <th class="head"><p>time_end</p></th>
+<th class="head"><p>fps</p></th>
 <th class="head"><p>bitrate</p></th>
 </tr>
 </thead>
@@ -181,20 +183,22 @@ for each audio, such as</p>
 <td><p>mp3</p></td>
 <td><p>0</p></td>
 <td></td>
+<td><p>44100</p></td>
 <td><p>3000k</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference external" href="https://www.youtube.com/watch?v=nOubjLM9Cbc">https://www.youtube.com/watch?v=nOubjLM9Cbc</a></p></td>
 <td><p>mp3</p></td>
 <td><p>3</p></td>
 <td><p>100</p></td>
+<td><p>200</p></td>
 <td><p>500k</p></td>
 </tr>
 </tbody>
 </table>
 <p>Here is the content of the example.csv file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>url,format,time_start,time_end,bitrate
-https://www.youtube.com/watch?v=WqkjYKUXERQ,mp3,0,,3000k
-https://www.youtube.com/watch?v=nOubjLM9Cbc,mp3,3,100,500k
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>url,format,time_start,time_end,fps,bitrate
+https://www.youtube.com/watch?v=WqkjYKUXERQ,mp3,0,,44100,3000k
+https://www.youtube.com/watch?v=nOubjLM9Cbc,mp3,3,100,200,500k
 </pre></div>
 </div>
 <p>To download all the audios from the urls listed in this file by calling:</p>

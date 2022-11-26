@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ytb_downloader.downloader &mdash; Youtube Downloader 0.2.0 documentation</title>
+  <title>ytb_downloader.downloader &mdash; Youtube Downloader 0.3.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
             <a href="../../index.html" class="icon icon-home"> Youtube Downloader
           </a>
               <div class="version">
-                0.2.0
+                0.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -81,25 +81,29 @@
 <span class="kn">from</span> <span class="nn">.file_name_collector</span> <span class="kn">import</span> <span class="n">FileNameCollectorPP</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">PROJECT_SLUG</span><span class="p">)</span>
-<span class="n">YDL_OPTS</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">YDL_VIDEO_OPTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;outtmpl&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(title)s</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;quiet&#39;</span><span class="p">:</span> <span class="kc">False</span>
+<span class="p">}</span>
+<span class="n">YDL_AUDIO_OPTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;bestaudio/best&#39;</span><span class="p">,</span>
     <span class="s1">&#39;outtmpl&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(title)s</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="s1">&#39;quiet&#39;</span><span class="p">:</span> <span class="kc">False</span>
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="download_videos"><a class="viewcode-back" href="../../04_source.html#ytb_downloader.downloader.download_videos">[docs]</a><span class="k">def</span> <span class="nf">download_videos</span><span class="p">(</span><span class="n">urls</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-                    <span class="n">ydl_opts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Download videos from the given youtube URLs.</span>
+<div class="viewcode-block" id="download"><a class="viewcode-back" href="../../04_source.html#ytb_downloader.downloader.download">[docs]</a><span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">urls</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">ydl_opts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Download videos/audios from the given youtube URLs.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        urls (:obj:`list` of :obj:`str`): urls to the videos in</span>
 <span class="sd">          youtube, you can get it through copying the url in address bar.</span>
-<span class="sd">        ydl_opts (:obj:`dict`, optional): youtube download options.</span>
+<span class="sd">        ydl_opts (:obj:`dict`): youtube_dl&#39;s options.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        :obj:`list` of :obj:`str`: Downloaded youtube video file names.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ydl_opts</span> <span class="o">=</span> <span class="n">ydl_opts</span> <span class="ow">or</span> <span class="n">YDL_OPTS</span>
+    <span class="n">ydl_opts</span> <span class="o">=</span> <span class="n">ydl_opts</span> <span class="ow">or</span> <span class="n">YDL_AUDIO_OPTS</span>
     <span class="n">output_files</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">with</span> <span class="n">youtube_dl</span><span class="o">.</span><span class="n">YoutubeDL</span><span class="p">(</span><span class="n">ydl_opts</span><span class="p">)</span> <span class="k">as</span> <span class="n">ydl</span><span class="p">:</span>
