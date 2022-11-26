@@ -8,7 +8,7 @@ from .config import settings
 logger = logging.getLogger(settings.PROJECT_SLUG)
 DOWNLOADING_FUNC_PARAM = "url"
 COL_TYPE_DICT = {"url": str, "format": str, "time_start": "int64",
-                 "time_end": str, "bitrate": str}
+                 "time_end": str, "fps": int, "bitrate": str}
 
 
 def columns_validation(columns: Sequence[str]) -> Union[List[str], None]:
@@ -33,7 +33,7 @@ def columns_validation(columns: Sequence[str]) -> Union[List[str], None]:
     return list(converting_func_params.intersection(columns))
 
 
-def load_info_file(file_path: str) -> Tuple[List[str], List[Dict]]:
+def load_file(file_path: str) -> Tuple[List[str], List[Dict]]:
     """Load information from csv file for downloading video function and converting
     video function.
 
