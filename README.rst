@@ -65,30 +65,33 @@ In the csv file, you can also specify the *format*, *time_start*, *time_end* and
 for each audio, such as
 
 .. list-table:: example.csv
-   :widths: 50 25 25 25 25
+   :widths: 50 25 25 25 25 25
    :header-rows: 1
 
    * - url
      - format
      - time_start
      - time_end
+     - fps
      - bitrate
    * - https://www.youtube.com/watch?v=WqkjYKUXERQ
      - mp3
      - 0
      -
+     - 44100
      - 3000k
    * - https://www.youtube.com/watch?v=nOubjLM9Cbc
      - mp3
      - 3
      - 100
+     - 200
      - 500k
 
 Here is the content of the example.csv file::
 
-    url,format,time_start,time_end,bitrate
-    https://www.youtube.com/watch?v=WqkjYKUXERQ,mp3,0,,3000k
-    https://www.youtube.com/watch?v=nOubjLM9Cbc,mp3,3,100,500k
+    url,format,time_start,time_end,fps,bitrate
+    https://www.youtube.com/watch?v=WqkjYKUXERQ,mp3,0,,44100,3000k
+    https://www.youtube.com/watch?v=nOubjLM9Cbc,mp3,3,100,200,500k
 
 To download all the audios from the urls listed in this file by calling::
 

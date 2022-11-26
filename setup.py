@@ -62,8 +62,8 @@ setup(name=NAME,
                              exclude=["tests*", "docs*"]),
       entry_points={
           'console_scripts': [
-              'ytb_downloader = ytb_downloader.main:download_audio',
-              'ytb_downloader_bulk = ytb_downloader.main:download_audios',
+              'ytb_downloader = ytb_downloader.main:download_single',
+              'ytb_downloader_bulk = ytb_downloader.main:download_bulk',
           ],
       },
       include_package_data=True,

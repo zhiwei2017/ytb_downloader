@@ -6,25 +6,29 @@ from .config import settings
 from .file_name_collector import FileNameCollectorPP
 
 logger = logging.getLogger(settings.PROJECT_SLUG)
-YDL_OPTS = {
+YDL_VIDEO_OPTS = {
+    'outtmpl': '%(title)s',
+    'quiet': False
+}
+YDL_AUDIO_OPTS = {
+    'format': 'bestaudio/best',
     'outtmpl': '%(title)s',
     'quiet': False
 }
 
 
-def download_videos(urls: List[str],
-                    ydl_opts: Optional[Dict] = None) -> List[str]:
-    """Download videos from the given youtube URLs.
+def download(urls: List[str], ydl_opts: Optional[Dict] = None) -> List[str]:
+    """Download videos/audios from the given youtube URLs.
 
     Args:
         urls (:obj:`list` of :obj:`str`): urls to the videos in
           youtube, you can get it through copying the url in address bar.
-        ydl_opts (:obj:`dict`, optional): youtube download options.
+        ydl_opts (:obj:`dict`): youtube_dl's options.
 
     Returns:
         :obj:`list` of :obj:`str`: Downloaded youtube video file names.
     """
-    ydl_opts = ydl_opts or YDL_OPTS
+    ydl_opts = ydl_opts or YDL_AUDIO_OPTS
     output_files = []
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
