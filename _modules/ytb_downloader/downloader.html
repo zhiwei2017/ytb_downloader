@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ytb_downloader.downloader &mdash; Youtube Downloader 0.3.0 documentation</title>
+  <title>ytb_downloader.downloader &mdash; Youtube Downloader 0.3.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
             <a href="../../index.html" class="icon icon-home"> Youtube Downloader
           </a>
               <div class="version">
-                0.3.0
+                0.3.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -75,7 +75,7 @@
   <h1>Source code for ytb_downloader.downloader</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;This module contains functions for downloading videos from youtube.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">youtube_dl</span>  <span class="c1"># type: ignore</span>
+<span class="kn">import</span> <span class="nn">yt_dlp</span>  <span class="c1"># type: ignore</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">from</span> <span class="nn">.file_name_collector</span> <span class="kn">import</span> <span class="n">FileNameCollectorPP</span>
@@ -93,30 +93,29 @@
 
 
 <div class="viewcode-block" id="download"><a class="viewcode-back" href="../../04_source.html#ytb_downloader.downloader.download">[docs]</a><span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">urls</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">ydl_opts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Download videos/audios from the given youtube URLs.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download videos/audios from the given youtube URLs.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        urls (:obj:`list` of :obj:`str`): urls to the videos in</span>
 <span class="sd">          youtube, you can get it through copying the url in address bar.</span>
-<span class="sd">        ydl_opts (:obj:`dict`): youtube_dl&#39;s options.</span>
+<span class="sd">        ydl_opts (:obj:`dict`): yt_dlp&#39;s options.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        :obj:`list` of :obj:`str`: Downloaded youtube video file names.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ydl_opts</span> <span class="o">=</span> <span class="n">ydl_opts</span> <span class="ow">or</span> <span class="n">YDL_AUDIO_OPTS</span>
-    <span class="n">output_files</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">youtube_dl</span><span class="o">.</span><span class="n">YoutubeDL</span><span class="p">(</span><span class="n">ydl_opts</span><span class="p">)</span> <span class="k">as</span> <span class="n">ydl</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">yt_dlp</span><span class="o">.</span><span class="n">YoutubeDL</span><span class="p">(</span><span class="n">ydl_opts</span><span class="p">)</span> <span class="k">as</span> <span class="n">ydl</span><span class="p">:</span>
             <span class="n">filename_collector</span> <span class="o">=</span> <span class="n">FileNameCollectorPP</span><span class="p">()</span>
             <span class="n">ydl</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
             <span class="n">ydl</span><span class="o">.</span><span class="n">add_post_processor</span><span class="p">(</span><span class="n">filename_collector</span><span class="p">)</span>
             <span class="n">ydl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span>
-            <span class="n">output_files</span> <span class="o">=</span> <span class="n">filename_collector</span><span class="o">.</span><span class="n">file_names</span>
+            <span class="k">return</span> <span class="n">filename_collector</span><span class="o">.</span><span class="n">file_names</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;The error [</span><span class="si">{}</span><span class="s2">] occurred during downloading &quot;</span> \
                     <span class="s2">&quot;the videos.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">output_files</span></div>
+        <span class="k">raise</span> <span class="n">e</span></div>
 </pre></div>
 
            </div>
@@ -126,7 +125,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Zhiwei Zhang.</p>
+    <p>&#169; Copyright 2023, Zhiwei Zhang.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

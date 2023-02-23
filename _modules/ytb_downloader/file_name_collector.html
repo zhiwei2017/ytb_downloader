@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ytb_downloader.file_name_collector &mdash; Youtube Downloader 0.3.0 documentation</title>
+  <title>ytb_downloader.file_name_collector &mdash; Youtube Downloader 0.3.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
             <a href="../../index.html" class="icon icon-home"> Youtube Downloader
           </a>
               <div class="version">
-                0.3.0
+                0.3.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -74,12 +74,12 @@
              
   <h1>Source code for ytb_downloader.file_name_collector</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Extracting downloaded files&#39; names.&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">youtube_dl</span>  <span class="c1"># type: ignore</span>
+<span class="kn">import</span> <span class="nn">yt_dlp</span>  <span class="c1"># type: ignore</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 
 
-<div class="viewcode-block" id="FileNameCollectorPP"><a class="viewcode-back" href="../../04_source.html#ytb_downloader.file_name_collector.FileNameCollectorPP">[docs]</a><span class="k">class</span> <span class="nc">FileNameCollectorPP</span><span class="p">(</span><span class="n">youtube_dl</span><span class="o">.</span><span class="n">postprocessor</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">PostProcessor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collect file names from the youtube_dl for downloaded videos as an post</span>
+<div class="viewcode-block" id="FileNameCollectorPP"><a class="viewcode-back" href="../../04_source.html#ytb_downloader.file_name_collector.FileNameCollectorPP">[docs]</a><span class="k">class</span> <span class="nc">FileNameCollectorPP</span><span class="p">(</span><span class="n">yt_dlp</span><span class="o">.</span><span class="n">postprocessor</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">PostProcessor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collect file names from the yt_dlp for downloaded videos as an post</span>
 <span class="sd">    processing step.</span>
 
 <span class="sd">    Attributes:</span>
@@ -91,7 +91,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">file_names</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="FileNameCollectorPP.run"><a class="viewcode-back" href="../../04_source.html#ytb_downloader.file_name_collector.FileNameCollectorPP.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">information</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Interface function for adding the last downloaded video&#39;s file name</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Interface function for adding the last downloaded video&#39;s file name</span>
 <span class="sd">        in the class attribute `filenames`.</span>
 
 <span class="sd">        Args:</span>
@@ -112,7 +112,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Zhiwei Zhang.</p>
+    <p>&#169; Copyright 2023, Zhiwei Zhang.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
