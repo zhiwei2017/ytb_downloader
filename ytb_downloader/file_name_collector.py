@@ -1,10 +1,10 @@
 """Extracting downloaded files' names."""
-import youtube_dl  # type: ignore
+import yt_dlp  # type: ignore
 from typing import Tuple, Dict, List
 
 
-class FileNameCollectorPP(youtube_dl.postprocessor.common.PostProcessor):
-    """Collect file names from the youtube_dl for downloaded videos as an post
+class FileNameCollectorPP(yt_dlp.postprocessor.common.PostProcessor):
+    """Collect file names from the yt_dlp for downloaded videos as an post
     processing step.
 
     Attributes:
