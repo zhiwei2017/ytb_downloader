@@ -33,6 +33,8 @@ def download_single(video_only: bool, format: str, time_start: int,
     """CMD function for downloading a video from given URL and convert it to the
     audio with given format and other converting params.
 
+    \f
+
     Args:
         video_only (:obj:`bool`): flag, to indicate whether to convert the video
           or not.
@@ -62,6 +64,8 @@ def download_single(video_only: bool, format: str, time_start: int,
 @click.argument("file")
 def download_bulk(video_only: bool, file: str):
     """Download videos in bulk and convert them to audios.
+
+    \f
 
     Args:
         video_only (:obj:`bool`): flag, to indicate whether to convert the video or
