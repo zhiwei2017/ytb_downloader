@@ -1,6 +1,6 @@
 """Configuration for the project, contains project name, project slug. The
 project slug is used as the centralized logger name."""
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):

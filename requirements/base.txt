@@ -1,5 +1,6 @@
-moviepy<1.1,>=1.0
-pydantic<1.11,>=1.10
-yt-dlp==2023.12.30
+moviepy2<1.1,>=1.0
+pydantic<2.10,>=2.9
+pydantic-settings<2.7,>=2.6
+yt-dlp==2024.11.4
 click<8.2,>=8.1
-pandas<1.6,>=1.5
+pandas<2.3,>=2.2
