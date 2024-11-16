@@ -26,31 +26,40 @@ clean-pyc:
 clean-build:
 	rm -rf build/ dist/ *.egg-info
 
-# Install all the packages listed in txt files in requirements folder.
-install_requirements:
-	find ./requirements -maxdepth 1 -name '*.txt' -exec python -m pip install -r {} \;
+# Install development dependencies
+install:
+	poetry install --with dev,test,docs
 
 # Install and run bandit security analysis
 bandit:
-	python -m pip install bandit
-	bandit -r $(SOURCE_DIR)
+	poetry run bandit -r $(SOURCE_DIR)
 
 # Install and run mypy type checking
 mypy:
-	python -m pip install -r requirements/dev.txt
-	mypy $(SOURCE_DIR)
-
-# Install and run flake8 linting
-flake8:
-	python -m pip install flake8
-	flake8 $(SOURCE_DIR)
+	poetry run mypy $(SOURCE_DIR)
 
 # Install requirements for testing and run tests
 test:
-	python -m pip install -r requirements/dev.txt
-	python -m pip install -e .
-	pytest
+	poetry run pytest
 
 # build wheel package
-build_whl:
-	python setup.py bdist_wheel
+build:
+	poetry build -f wheel
+
+# publish the built package
+publish:
+	@if [ -n "${POETRY_PYPI_TOKEN_PYPI}" ]; then\
+		echo "Uploading package to PyPi.";\
+		poetry publish;\
+	elif [ -n "${PACKAGE_INDEX_REPOSITORY_URL}" ] && [ -n "${PACKAGE_INDEX_USERNAME}" ] && [ -n "${PACKAGE_INDEX_PASSWORD}" ]; then\
+		echo "Uploading package to private package index ${PACKAGE_INDEX_REPOSITORY_URL}.";\
+		poetry config repositories.packagidx ${PACKAGE_INDEX_REPOSITORY_URL};\
+		if [ -n "${PACKAGE_INDEX_CERT}" ]; then\
+			poetry publish -u ${PACKAGE_INDEX_USERNAME} -p ${PACKAGE_INDEX_PASSWORD} --cert ${PACKAGE_INDEX_CERT} -r packagidx;\
+		else\
+			poetry publish -u ${PACKAGE_INDEX_USERNAME} -p ${PACKAGE_INDEX_PASSWORD} -r packagidx;\
+		fi;\
+	else\
+		echo "To upload package to a private package index, you need to set environment variables \033[1mPACKAGE_INDEX_REPOSITORY_URL\033[0m \033[1mPACKAGE_INDEX_USERNAME\033[0m and \033[1mPACKAGE_INDEX_PASSWORD\033[0m.";\
+		exit 1;\
+	fi
