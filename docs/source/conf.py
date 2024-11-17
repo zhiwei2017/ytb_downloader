@@ -16,6 +16,7 @@
 import datetime
 import os
 import sys
+import importlib.metadata
 
 root_path = os.path.abspath('../..')
 sys.path.insert(0, root_path)
@@ -28,10 +29,7 @@ copyright = '{}, {}'.format(datetime.datetime.now().year, author)
 
 
 # The short X.Y version
-local_vars = dict()
-version_path = os.path.join(root_path, "ytb_downloader", "version.py")
-exec(open(version_path).read(), local_vars)
-version = local_vars["__version__"]
+version = importlib.metadata.version("ytb_downloader")
 # The full version, including alpha/beta/rc tags
 release = version
 

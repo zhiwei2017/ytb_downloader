@@ -1,0 +1,60 @@
+[tool.poetry]
+name = 'ytb_downloader'
+version = "0.3.2"
+description = "Download youtube videos and convert them to mp3."
+authors = ["Zhiwei Zhang <zhiwei2017@gmail.com>"]
+readme = "README.rst"
+license = "MIT"
+repository = "https://github.com/zhiwei2017/ytb_downloader"
+documentation = "https://zhiwei2017.github.io/ytb_downloader/"
+keywords = []
+classifiers = []
+packages = [
+  {include = "ytb_downloader"}
+]
+
+include = []
+
+[tool.poetry.dependencies]
+python = "^3.9"
+moviepy = "<1.1,>=1.0"
+pydantic = "<2.10,>=2.9"
+pydantic-settings = "<2.7,>=2.6"
+yt-dlp = "==2024.11.4"
+click = "<8.2,>=8.1"
+pandas = "<2.3,>=2.2"
+
+[tool.poetry.group.dev.dependencies]
+bandit = "~1.7"
+mypy = "~1.6"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "~7.4"
+pytest-cov = "~4.1"
+pytest-runner = "~6.0"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "~7.1"
+sphinx_rtd_theme = "~1.3"
+
+[build-system]
+requires = ["poetry"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ytb_downloader = 'ytb_downloader.main:download_single'
+ytb_downloader_bulk = 'ytb_downloader.main:download_bulk'
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+addopts = "--verbose --doctest-modules --cov-report term-missing --cov=./ytb_downloader"

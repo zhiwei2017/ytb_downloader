@@ -114,5 +114,4 @@ Maintainers
 
 .. _bandit: https://bandit.readthedocs.io/en/latest/
 .. _mypy: https://github.com/python/mypy
-.. _flake8: https://gitlab.com/pycqa/flake8
 .. _pytest: https://docs.pytest.org/en/stable/
