@@ -17,7 +17,7 @@ include = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
-moviepy2 = "<1.1,>=1.0"
+moviepy = "<1.1,>=1.0"
 pydantic = "<2.10,>=2.9"
 pydantic-settings = "<2.7,>=2.6"
 yt-dlp = "==2024.11.4"
